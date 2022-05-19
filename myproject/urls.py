@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 import todolist.views
+import users.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', todolist.views.home, name="home"), 
+    path('calender/', todolist.views.calender, name="calender"), 
+    path('profile/', users.views.profile, name="profile"), 
 ]
