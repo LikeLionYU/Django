@@ -57,7 +57,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,9 +122,12 @@ USE_TZ = True # 대한민국 시간대를 설정했으므로, 기본 시간대 �
 
 # 웹서비스에서 미리 준비한 static파일의 위치
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     BASE_DIR/'static',
 ]
+
+STATIC_ROOT = os.path.join('staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
