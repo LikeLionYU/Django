@@ -39,7 +39,7 @@ INSTALLED_APPS = [ # 만든 외부 패키지를 적어줌
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'snsapp',
+    'blogapp',
 ]
 
 MIDDLEWARE = [
