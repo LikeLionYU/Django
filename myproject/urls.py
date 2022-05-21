@@ -23,6 +23,7 @@ urlpatterns = [
 
     # html form
     path('new/', views.new, name="new"),
-    path('create/', views.create, name="create"),
-    path('formcreate/', views.formcreate, name="formcreate"),
+    path('html-form/', views.html_form, name="html_form"),
+    path('django-form/', views.django_form, name="django_form"),
+    path('djangomodel-form/', views.djangomodel_form, name="djangomodel_form"),
 ]
