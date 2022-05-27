@@ -4,7 +4,10 @@ from .forms import BlogForm, BlogModelForm
 from django.utils import timezone
 
 def home(req):
-    return render(req, 'index.html')
+    # 블로그 글들을 모조리 띄우는 코드
+    # queryset = Blog.objects.all()
+    queryset = Blog.objects.filter().order_by("date")
+    return render(req, 'index.html', {'posts':queryset})
 
 # 블로그 글 작성하는 html 보여주는 함수(html form에 대한 get 함수)
 def new(req):
