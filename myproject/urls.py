@@ -20,6 +20,9 @@ from blogapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
+    path('detail/<int:blog_id>', views.detail, name="detail"),
+    # html의 템플릿 언어로 넘겨받은 post.id가 int형의 blog_id에 저장되고,
+    # blog_id는 views의 detail 함수로 전달된다
 
     # html form
     path('new/', views.new, name="new"),

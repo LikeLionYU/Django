@@ -1,4 +1,4 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from .models import Blog
 from .forms import BlogForm, BlogModelForm
 from django.utils import timezone
@@ -12,6 +12,11 @@ def home(req):
 # 블로그 글 작성하는 html 보여주는 함수(html form에 대한 get 함수)
 def new(req):
     return render(req, 'html_form.html')
+
+def detail(req, blog_id):
+    # queryset = Blog.objects.filter(id=blog_id) --> 이렇게 하면 안 됨
+    queryset = get_object_or_404(Blog, pk=blog_id)
+    return render(req, 'detail.html', {"blog_detail":queryset})
 
 # 블로그 글 저장하는 함수(html form에 대한 post 함수)
 def html_form(req):
