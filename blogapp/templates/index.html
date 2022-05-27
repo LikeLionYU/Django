@@ -10,6 +10,16 @@
 
 <body>
     <h1>My Simple Blog</h1>
+    <!-- 글 목록 -->
+    {% for post in posts%}
+        <!-- post.id로 장고가 자동으로 생성한 pk 확인 가능 -->
+        <a href="{% url 'detail' post.id %}"><h3>제목 : {{post.title}}</h3></a>
+        <h3>작성 날짜 : {{post.date}}</h3>
+    {% endfor %}
+    <br>
+    <a href="{% url 'new' %}">HTML form을 이용한 새 글 작성</a><br>
+    <a href="{% url 'django_form' %}">django form을 이용한 새 글 작성</a><br>
+    <a href="{% url 'djangomodel_form' %}">django model form을 이용한 새 글 작성</a>
 </body>
 
 </html>
