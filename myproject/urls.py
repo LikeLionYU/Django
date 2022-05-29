@@ -21,6 +21,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
+    path('comment/<int:blog_id>', views.comment, name="comment"),
     path('detail/<int:blog_id>', views.detail, name="detail"),
     # html의 템플릿 언어로 넘겨받은 post.id가 int형의 blog_id에 저장되고,
     # blog_id는 views의 detail 함수로 전달된다

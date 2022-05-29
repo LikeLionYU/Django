@@ -13,6 +13,6 @@ class Blog(models.Model):
         return self.title
 
 class Comment(models.Model):
-    comment = models.CharField(max_length=200)
+    comment = models.TextField()
     date = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey(Blog, on_delete=models.CASCADE)
