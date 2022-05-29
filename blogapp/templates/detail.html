@@ -6,3 +6,9 @@
 
 <h3>생성 날짜</h3>
 {{blog_detail.date}}
+
+<h3>삽입 이미지</h3>
+{% if blog_detail.photo %}
+    {{ blog_detail.photo.url}}
+    <img src="{{ blog_detail.photo.url}}" alt="" height="600">
+{% endif %}

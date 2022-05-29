@@ -46,9 +46,9 @@ def django_form(req):
 
 # django model form
 def djangomodel_form(req):
-    if req.method == 'POST':
-        form = BlogModelForm(req.POST)
-        if form.is_valid:
+    if req.method == 'POST' or req.method =='FILES':
+        form = BlogModelForm(req.POST, req.FILES)
+        if form.is_valid():
             form.save()
             return redirect('home')
     else:

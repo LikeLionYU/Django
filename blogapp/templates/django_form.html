@@ -10,7 +10,7 @@
 
 <body>
     <h1>django form을 이용해 새 글 작성하기</h1>
-    <form action="{% url 'django_form' %}" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
             {{form.as_table}}

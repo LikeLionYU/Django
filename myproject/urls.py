@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from blogapp import views
-
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name="home"),
@@ -29,4 +30,5 @@ urlpatterns = [
     path('html-form/', views.html_form, name="html_form"),
     path('django-form/', views.django_form, name="django_form"),
     path('djangomodel-form/', views.djangomodel_form, name="djangomodel_form"),
-]
+] 
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
