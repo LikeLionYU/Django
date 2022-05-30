@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Blog
-from .forms import BlogForm, BlogModelForm
+from .forms import BlogForm, BlogModelForm, CommentForm
 from django.utils import timezone
 
 def home(req):
@@ -16,7 +16,18 @@ def new(req):
 def detail(req, blog_id):
     # queryset = Blog.objects.filter(id=blog_id) --> 이렇게 하면 안 됨
     queryset = get_object_or_404(Blog, pk=blog_id)
-    return render(req, 'detail.html', {"blog_detail":queryset})
+    comment_form = CommentForm()
+    return render(req, 'detail.html', {"blog_detail":queryset, "comment_form":comment_form})
+
+def comment(req, blog_id):
+    if req.method == "POST":
+        filled_comment = CommentForm(req.POST)
+        if filled_comment.is_valid():
+            finished_comment = filled_comment.save(commit=False)
+            finished_comment.post = get_object_or_404(Blog, pk=blog_id)
+            finished_comment.save()
+            return redirect('detail', blog_id)
+
 
 # 블로그 글 저장하는 함수(html form에 대한 post 함수)
 def html_form(req):
@@ -46,11 +57,13 @@ def django_form(req):
 
 # django model form
 def djangomodel_form(req):
-    if req.method == 'POST':
-        form = BlogModelForm(req.POST)
-        if form.is_valid:
+    if req.method == 'POST' or req.method =='FILES':
+        form = BlogModelForm(req.POST, req.FILES)
+        if form.is_valid():
             form.save()
             return redirect('home')
     else:
         form = BlogModelForm()
         return render(req, 'django_form.html', {'form':form})
+
+

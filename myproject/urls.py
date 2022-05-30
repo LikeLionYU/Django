@@ -14,12 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from blogapp import views
+import accounts
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
     path('', views.home, name="home"),
+    path('comment/<int:blog_id>', views.comment, name="comment"),
     path('detail/<int:blog_id>', views.detail, name="detail"),
     # html의 템플릿 언어로 넘겨받은 post.id가 int형의 blog_id에 저장되고,
     # blog_id는 views의 detail 함수로 전달된다
@@ -29,4 +34,5 @@ urlpatterns = [
     path('html-form/', views.html_form, name="html_form"),
     path('django-form/', views.django_form, name="django_form"),
     path('djangomodel-form/', views.djangomodel_form, name="djangomodel_form"),
-]
+] 
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
